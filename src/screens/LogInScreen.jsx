@@ -7,7 +7,7 @@ import firebase from 'firebase';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 
-import { tranlateErros } from '../utils';
+import { tranlateErrors } from '../utils';
 
 export default function LogInScreen(props) {
   const { navigation } = props;
@@ -39,7 +39,7 @@ export default function LogInScreen(props) {
         });
       })
       .catch((error) => {
-        const errorMsg = tranlateErros(error.code);
+        const errorMsg = tranlateErrors(error.code);
         Alert.alert(errorMsg.title, errorMsg.description);
       })
       .then(() => {
