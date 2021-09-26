@@ -9,6 +9,7 @@ import CircleButton from '../components/CircleButton';
 import LogOutButton from '../components/LogOutButton';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
+import { tranlateErros } from '../utils';
 
 export default function MemoListScreen(props) {
   const { navigation } = props;
@@ -40,9 +41,9 @@ export default function MemoListScreen(props) {
         setMemos(userMemos);
         setLoading(false);
       }, (error) => {
-        console.log(error);
         setLoading(false);
-        Alert.alert('データの読み込みに失敗しました');
+        const errorMsg = tranlateErros(error.code);
+        Alert.alert(errorMsg.title, errorMsg.description);
       });
     }
     return unsubscribe;
