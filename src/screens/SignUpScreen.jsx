@@ -6,6 +6,8 @@ import firebase from 'firebase';
 
 import Button from '../components/Button';
 
+import { tranlateErros } from '../utils';
+
 export default function SignUpScreen(props) {
   const { navigation } = props;
   const [email, setEmail] = useState('');
@@ -22,7 +24,8 @@ export default function SignUpScreen(props) {
         });
       })
       .catch((error) => {
-        Alert.alert(error.code);
+        const errorMsg = tranlateErros(error.code);
+        Alert.alert(errorMsg.title, errorMsg.description);
       });
   }
 
